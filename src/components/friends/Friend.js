@@ -1,0 +1,1 @@
+// The Friend List will have no 'friend/' the list component and the add friend will render straight to the friend card 
