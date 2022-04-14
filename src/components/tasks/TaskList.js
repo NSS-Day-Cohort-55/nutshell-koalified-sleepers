@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllTasks } from "../../modules/TaskManager";
+import { getAllTasks, deleteTask, changeObjective } from "../../modules/TaskManager";
 import { useNavigate } from "react-router-dom";
 import { TaskCard } from "./Task";
+
 
 
 export const TaskList=()=>{
@@ -13,6 +14,19 @@ export const TaskList=()=>{
         getAllTasks().then(tasksFromApi=>{
             setTasks(tasksFromApi)
         })
+    }
+    
+    const handleDeleteTask = id => {
+        deleteTask(id)
+        .then(() => getAllTasks().then(setTasks));
+    };
+
+    const handleChangeTask=(id)=>{ 
+        const editTask={
+        id: id,    
+        isDone: true
+        }
+        changeObjective(editTask).then(()=>getAllTasks().then(setTasks))
     }
 
     useEffect(()=> {
@@ -34,6 +48,8 @@ export const TaskList=()=>{
         <TaskCard
           key={task.id}
           singleTask={task}
+          handleDeleteTask={handleDeleteTask}
+          handleChangeTask={handleChangeTask}
          />)}
     </div>
         </>
