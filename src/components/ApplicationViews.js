@@ -26,7 +26,7 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
 
         <Route exact path="tasks" element={<TaskList/>} />
         <Route path="tasks/create" element={<TaskForm/>}/>
-        
+
         <Route path="events" element={""} />
       </Route>
 
