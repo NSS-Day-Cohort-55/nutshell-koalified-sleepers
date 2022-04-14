@@ -4,6 +4,8 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { TaskList } from "./tasks/TaskList"
 import { TaskForm } from "./tasks/AddTaskForm"
+import { ArticleList } from "./articles/ArticleList"
+import { ArticleForm } from "./articles/AddArticleForm"
 
 export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
   const PrivateOutlet = () => {
@@ -17,12 +19,16 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
   
   return (
     <>
-    <Routes>
-      <Route path="/" element={<PrivateOutlet/>} >
+      <Routes>
+        <Route path="/" element={<PrivateOutlet />}>
+          <Route path="friends" element={""} />
 
-        <Route path="friends" element={""} />
+          <Route path="messages" element={""} />
 
-        <Route path="messages" element={""} />
+          <Route exact path="tasks" element={<TaskList />} />
+          <Route path="tasks/create" element={<TaskForm />} />
+          <Route exact path="articles" element={<ArticleList />} />
+          <Route path="articles/create" element={<ArticleForm isAuthenticated={isAuthenticated}/>} />
 
         <Route exact path="tasks" element={<TaskList/>} />
         <Route path="tasks/create" element={<TaskForm/>}/>
@@ -30,11 +36,10 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
         <Route path="events" element={""} />
       </Route>
 
-      <Route path="/login" element={<Login setAuthUser={setAuthUser}/>}/>
+        <Route path="/login" element={<Login setAuthUser={setAuthUser} />} />
 
-      <Route path="/register" element={<Register/>}/>
-
-    </Routes>
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </>
   )
 }
