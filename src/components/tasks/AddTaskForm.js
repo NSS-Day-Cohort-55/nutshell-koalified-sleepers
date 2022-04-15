@@ -9,7 +9,8 @@ export const TaskForm = () => {
     const [tasks, setTasks] = useState({
 		objective: "",
 		dueDate: "",
-        isDone: false
+        isDone: false,
+		userId: JSON.parse(sessionStorage.getItem("nutshell_user")).id
 	});
 
     const navigate = useNavigate();

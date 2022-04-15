@@ -7,6 +7,7 @@ import { TaskForm } from "./tasks/AddTaskForm"
 import { ArticleList } from "./articles/ArticleList"
 import { ArticleForm } from "./articles/AddArticleForm"
 import { MessageList } from "./messages/MessageList"
+import { EditTaskForm } from "./tasks/EditTaskForm"
 
 export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
   const PrivateOutlet = () => {
@@ -33,6 +34,7 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
 
         <Route exact path="tasks" element={<TaskList/>} />
         <Route path="tasks/create" element={<TaskForm/>}/>
+        <Route path="tasks/:taskId/edit" element={<EditTaskForm/>}/>
 
         <Route path="events" element={""} />
       </Route>
