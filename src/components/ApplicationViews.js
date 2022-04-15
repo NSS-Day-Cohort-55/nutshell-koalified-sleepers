@@ -9,6 +9,8 @@ import { ArticleForm } from "./articles/AddArticleForm"
 import { MessageList } from "./messages/MessageList"
 import { EditTaskForm } from "./tasks/EditTaskForm"
 import { EditArticleForm } from "./articles/EditArticleForm"
+import { FriendList } from "./friends/FriendList"
+import { FriendForm } from "./friends/AddFriend"
 import { EventList } from "./events/EventList"
 import { EventForm } from "./events/AddEventForm"
 import { EditEventForm } from "./events/EditEventForm"
@@ -27,7 +29,8 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
     <>
       <Routes>
         <Route path="/" element={<PrivateOutlet />}>
-          <Route path="friends" element={""} />
+          <Route path="friends" element={<FriendList/>} />
+          <Route path="friends/add" element={<FriendForm/>}/>
 
           <Route path="messages" element={<MessageList />} />
 
