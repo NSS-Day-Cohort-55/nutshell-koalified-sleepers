@@ -3,87 +3,91 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getEventById, updateEvent } from "../../modules/EventManager"
 
 export const EditEventForm = () => {
-  const [event, setEvent] = useState({ eventName: "", eventDate: "", location: "" })
-  const [isLoading, setIsLoading] = useState(false)
+    const [event, setEvent] = useState({
+        eventName: "",
+        eventDate: "",
+        location: "",
+    })
+    const [isLoading, setIsLoading] = useState(false)
 
-  const { eventId } = useParams()
-  const navigate = useNavigate()
+    const { eventId } = useParams()
+    const navigate = useNavigate()
 
-  const handleFieldChange = (evt) => {
-    const stateToChange = { ...event }
-    stateToChange[evt.target.id] = evt.target.value
-    setEvent(stateToChange)
-  }
-
-  const updateExistingEvent = (evt) => {
-    evt.preventDefault()
-    setIsLoading(true)
-
-    const editedEvent = {
-      id: eventId,
-      eventName: event.eventName,
-      eventDate: event.eventDate,
-      location: event.location
+    const handleFieldChange = (evt) => {
+        const stateToChange = { ...event }
+        stateToChange[evt.target.id] = evt.target.value
+        setEvent(stateToChange)
     }
 
-    updateEvent(editedEvent).then(() => navigate("/events"))
-  }
+    const updateExistingEvent = (evt) => {
+        evt.preventDefault()
+        setIsLoading(true)
 
-  useEffect(() => {
-    getEventById(eventId).then((event) => {
-      setEvent(event)
-      setIsLoading(false)
-    })
-  }, [])
+        const editedEvent = {
+            id: eventId,
+            eventName: event.eventName,
+            eventDate: event.eventDate,
+            location: event.location,
+        }
 
-  return (
-    <>
-      <form>
-        <fieldset>
-          <div className="formgrid">
-            <input
-              type="text"
-              required
-              className="form-control"
-              onChange={handleFieldChange}
-              id="eventName"
-              value={event.eventName}
-            />
-            <label htmlFor="name">Event:</label>
+        updateEvent(editedEvent).then(() => navigate("/events"))
+    }
 
-            <input
-              type="date"
-              required
-              className="form-control"
-              onChange={handleFieldChange}
-              id="eventDate"
-              value={event.eventDate}
-            />
-            <label htmlFor="eventDate">Date:</label>
-          </div>
+    useEffect(() => {
+        getEventById(eventId).then((event) => {
+            setEvent(event)
+            setIsLoading(false)
+        })
+    }, [])
 
-            <input
-              type="text"
-              required
-              className="form-control"
-              onChange={handleFieldChange}
-              id="location"
-              value={event.location}
-            />
-            <label htmlFor="name">Location:</label>
+    return (
+        <>
+            <form>
+                <fieldset>
+                    <div className="formgrid">
+                        <label htmlFor="name">Event:</label>
+                        <input
+                            type="text"
+                            required
+                            className="form-control"
+                            onChange={handleFieldChange}
+                            id="eventName"
+                            value={event.eventName}
+                        />
 
-          <div className="alignRight">
-            <button
-              type="button"
-              disabled={isLoading}
-              onClick={updateExistingEvent}
-              className="btn btn-primary"
-            >
-              Submit
-            </button>
-          </div>
-        </fieldset>
-      </form>
-    </>
-  )
+                        <label htmlFor="eventDate">Date:</label>
+                        <input
+                            type="date"
+                            required
+                            className="form-control"
+                            onChange={handleFieldChange}
+                            id="eventDate"
+                            value={event.eventDate}
+                        />
+                    </div>
+
+                    <label htmlFor="name">Location:</label>
+                    <input
+                        type="text"
+                        required
+                        className="form-control"
+                        onChange={handleFieldChange}
+                        id="location"
+                        value={event.location}
+                    />
+
+                    <div className="alignRight">
+                        <button
+                            type="button"
+                            disabled={isLoading}
+                            onClick={updateExistingEvent}
+                            className="btn btn-primary"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </>
+    )
 }
