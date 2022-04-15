@@ -1,14 +1,15 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { addEvent } from "../../modules/EventManager"
+import { addEvent, getAllEvents } from "../../modules/EventManager"
 
 export const EventForm = () => {
-  const [event, setEvent] = useState({
-    eventName: "",
-    date: "",
-    location: "",
-    userId: JSON.parse(sessionStorage.getItem("nutshell_user")).id,
-  })
+
+     const [event, setEvent] = useState({
+       eventName: "",
+       location: "",
+       eventDate: "",
+       userId: JSON.parse(sessionStorage.getItem("nutshell_user")).id,
+     })
 
   const navigate = useNavigate()
 
@@ -20,6 +21,12 @@ export const EventForm = () => {
 
     setEvent(newEvent)
   }
+
+   useEffect(() => {
+     getAllEvents().then((events) => {
+       setEvent(events)
+     })
+   }, [])
 
   const handleClickSaveEvent = (event) => {
     event.preventDefault()
@@ -35,7 +42,7 @@ export const EventForm = () => {
           <label htmlFor="objective">Event name:</label>
           <input
             type="text"
-            id="name"
+            id="eventName"
             onChange={handleControlledInputChange}
             required
             autoFocus
@@ -53,7 +60,6 @@ export const EventForm = () => {
             id="location"
             onChange={handleControlledInputChange}
             required
-            autoFocus
             className="form-control"
             placeholder="Location"
             value={event.location}
@@ -68,7 +74,6 @@ export const EventForm = () => {
             id="eventDate"
             onChange={handleControlledInputChange}
             required
-            autoFocus
             className="form-control"
             placeholder="Event date"
             value={event.eventDate}
