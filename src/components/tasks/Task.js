@@ -1,4 +1,4 @@
-import { changeObjective } from "../../modules/TaskManager"
+import { Link } from "react-router-dom"
 
 
 export const TaskCard = ({singleTask, handleDeleteTask, handleChangeTask}) => {
@@ -16,7 +16,10 @@ export const TaskCard = ({singleTask, handleDeleteTask, handleChangeTask}) => {
                {singleTask.isDone?
                 <button type="button" onClick={() => handleDeleteTask(singleTask.id)}>Archive</button> :
                 <label><input type="checkbox" onClick={() => handleChangeTask(singleTask.id)}></input>
-                Mark as finished</label>}
+                Mark as finished</label>}<br/>
+                {singleTask.isDone? "":<Link to={`/tasks/${singleTask.id}/edit`}>
+    <button>Edit</button>
+  </Link>}
             </div>
         </div>
         </>
