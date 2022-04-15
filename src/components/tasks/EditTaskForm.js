@@ -36,7 +36,7 @@ export const EditTaskForm = () => {
                 setTask(task);
                 setIsLoading(false);
             });
-    }, []);
+    }, [taskId]);
 
 
     return (
@@ -44,6 +44,7 @@ export const EditTaskForm = () => {
           <form>
             <fieldset>
               <div className="formgrid">
+              <label htmlFor="name">What do you need to get done?</label>
                 <input
                   type="text"
                   required
@@ -52,8 +53,8 @@ export const EditTaskForm = () => {
                   id="objective"
                   value={task.objective}
                 />
-                <label htmlFor="name">What do you need to get done?</label>
-    
+                
+                <label htmlFor="dueDate">Due Date:</label>
                 <input
                   type="date"
                   required
@@ -62,7 +63,7 @@ export const EditTaskForm = () => {
                   id="dueDate"
                   value={task.dueDate}
                 />
-                <label htmlFor="dueDate">Due Date:</label>
+                
               </div>
               {/* Be sure to include location and customer */}
               <div className="alignRight">
