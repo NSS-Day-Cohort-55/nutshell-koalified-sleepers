@@ -6,7 +6,7 @@ export const EventCard = ({singleEvent, handleDeleteEvent}) => {
           <div className="cardContent">
             <h3>{singleEvent.eventName}</h3>
             <br />
-            <p>Date: {singleEvent.date}</p>
+            <p>Date: {singleEvent.eventDate}</p>
             <p>{singleEvent.location}</p>
             <button
               type="button"

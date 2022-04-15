@@ -1,37 +1,30 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { addEvent, getAllEvents } from "../../modules/EventManager"
+import { addEvent } from "../../modules/EventManager"
 
 export const EventForm = () => {
-
-     const [event, setEvent] = useState({
-       eventName: "",
-       location: "",
-       eventDate: "",
-       userId: JSON.parse(sessionStorage.getItem("nutshell_user")).id,
-     })
+  const [events, setEvents] = useState({
+    eventName: "",
+    dueDate: "",
+    location: "",
+    userId: JSON.parse(sessionStorage.getItem("nutshell_user")).id,
+  })
 
   const navigate = useNavigate()
 
   const handleControlledInputChange = (event) => {
-    const newEvent = { ...event }
+    const newEvent = { ...events }
     let selectedVal = event.target.value
 
     newEvent[event.target.id] = selectedVal
 
-    setEvent(newEvent)
+    setEvents(newEvent)
   }
-
-   useEffect(() => {
-     getAllEvents().then((events) => {
-       setEvent(events)
-     })
-   }, [])
 
   const handleClickSaveEvent = (event) => {
     event.preventDefault()
 
-    addEvent(event).then(() => navigate("/events"))
+    addEvent(events).then(() => navigate("/events"))
   }
 
   return (
@@ -39,7 +32,7 @@ export const EventForm = () => {
       <h2 className="eventForm__title">New Event</h2>
       <fieldset>
         <div className="form-group">
-          <label htmlFor="objective">Event name:</label>
+          <label htmlFor="eventName">Event:</label>
           <input
             type="text"
             id="eventName"
@@ -47,8 +40,22 @@ export const EventForm = () => {
             required
             autoFocus
             className="form-control"
-            placeholder="Event name"
-            value={event.eventName}
+            placeholder="Event name or description"
+            value={events.eventName}
+          />
+        </div>
+      </fieldset>
+      <fieldset>
+        <div className="form-group">
+          <label htmlFor="eventDate">Date</label>
+          <input
+            type="date"
+            id="eventDate"
+            onChange={handleControlledInputChange}
+            required
+            autoFocus
+            className="form-control"
+            value={events.eventDate}
           />
         </div>
       </fieldset>
@@ -60,23 +67,10 @@ export const EventForm = () => {
             id="location"
             onChange={handleControlledInputChange}
             required
+            autoFocus
             className="form-control"
             placeholder="Location"
-            value={event.location}
-          />
-        </div>
-      </fieldset>
-      <fieldset>
-        <div className="form-group">
-          <label htmlFor="eventDate">Event date:</label>
-          <input
-            type="date"
-            id="eventDate"
-            onChange={handleControlledInputChange}
-            required
-            className="form-control"
-            placeholder="Event date"
-            value={event.eventDate}
+            value={events.location}
           />
         </div>
       </fieldset>

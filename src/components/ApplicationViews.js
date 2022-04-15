@@ -8,6 +8,8 @@ import { ArticleList } from "./articles/ArticleList"
 import { ArticleForm } from "./articles/AddArticleForm"
 import { MessageList } from "./messages/MessageList"
 import { EditTaskForm } from "./tasks/EditTaskForm"
+import { EventList } from "./events/EventList"
+import { EventForm } from "./events/AddEventForm"
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
   const PrivateOutlet = () => {
