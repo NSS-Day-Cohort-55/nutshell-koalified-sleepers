@@ -5,7 +5,7 @@ import { addEvent } from "../../modules/EventManager"
 export const EventForm = () => {
   const [events, setEvents] = useState({
     eventName: "",
-    dueDate: "",
+    eventDate: "",
     location: "",
     userId: JSON.parse(sessionStorage.getItem("nutshell_user")).id,
   })

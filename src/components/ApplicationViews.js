@@ -10,6 +10,7 @@ import { MessageList } from "./messages/MessageList"
 import { EditTaskForm } from "./tasks/EditTaskForm"
 import { EventList } from "./events/EventList"
 import { EventForm } from "./events/AddEventForm"
+import { EditEventForm } from "./events/EditEventForm"
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
   const PrivateOutlet = () => {
@@ -37,12 +38,13 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
             element={<ArticleForm isAuthenticated={isAuthenticated} />}
           />
 
-        <Route exact path="tasks" element={<TaskList/>} />
-        <Route path="tasks/create" element={<TaskForm/>}/>
-        <Route path="tasks/:taskId/edit" element={<EditTaskForm/>}/>
+          <Route exact path="tasks" element={<TaskList />} />
+          <Route path="tasks/create" element={<TaskForm />} />
+          <Route path="tasks/:taskId/edit" element={<EditTaskForm />} />
 
           <Route exact path="events" element={<EventList />} />
           <Route path="events/create" element={<EventForm />} />
+          <Route path="events/:eventId/edit" element={<EditEventForm />} />
         </Route>
 
         <Route path="/login" element={<Login setAuthUser={setAuthUser} />} />

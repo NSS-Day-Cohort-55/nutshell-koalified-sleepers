@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAllEvents, deleteEvent } from "../../modules/EventManager"
+import { getAllEvents, deleteEvent, updateEvent } from "../../modules/EventManager"
 import { useNavigate } from "react-router-dom"
 import { EventCard } from "./Event"
 
@@ -16,6 +16,17 @@ export const EventList = () => {
 
     const handleDeleteEvent = (id) => {
       deleteEvent(id).then(() => getAllEvents().then(setEvents))
+    }
+
+    const handleChangeEvent = (id) => {
+      const editEvent = {
+        id: id,
+        eventName: id.eventName,
+        eventDate: id.eventDate,
+        location: id.location,
+        userId: JSON.parse(sessionStorage.getItem("nutshell_user")).id,
+      }
+      updateEvent(editEvent).then(() => getAllEvents().then(setEvents))
     }
 
     useEffect(() => {
@@ -40,6 +51,7 @@ export const EventList = () => {
             <EventCard
               key={event.id}
               singleEvent={event}
+              handleChangeEvent={handleChangeEvent}
               handleDeleteEvent={handleDeleteEvent}
             />
           ))}
