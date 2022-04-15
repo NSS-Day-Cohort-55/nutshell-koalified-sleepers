@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const ArticleCard = ({singleArticle, handleDeleteArticle}) => {
 
     return (
@@ -15,6 +17,9 @@ export const ArticleCard = ({singleArticle, handleDeleteArticle}) => {
             >
               Delete
             </button>
+            <Link to={`/articles/${singleArticle.id}/edit`}>
+    <button>Edit</button>
+  </Link>
           </div>
         </div>
       </>

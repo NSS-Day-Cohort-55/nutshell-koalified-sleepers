@@ -8,9 +8,7 @@ import { ArticleList } from "./articles/ArticleList"
 import { ArticleForm } from "./articles/AddArticleForm"
 import { MessageList } from "./messages/MessageList"
 import { EditTaskForm } from "./tasks/EditTaskForm"
-import { EventList } from "./events/EventList"
-import { EventForm } from "./events/AddEventForm"
-import { EditEventForm } from "./events/EditEventForm"
+import { EditArticleForm } from "./articles/EditArticleForm"
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
   const PrivateOutlet = () => {
@@ -30,13 +28,9 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
 
           <Route path="messages" element={<MessageList />} />
 
-          <Route exact path="tasks" element={<TaskList />} />
-          <Route path="tasks/create" element={<TaskForm />} />
           <Route exact path="articles" element={<ArticleList />} />
-          <Route
-            path="articles/create"
-            element={<ArticleForm isAuthenticated={isAuthenticated} />}
-          />
+          <Route path="articles/:articleId/edit" element={<EditArticleForm/>}/>
+          <Route path="articles/create" element={<ArticleForm isAuthenticated={isAuthenticated}/>} />
 
           <Route exact path="tasks" element={<TaskList />} />
           <Route path="tasks/create" element={<TaskForm />} />
