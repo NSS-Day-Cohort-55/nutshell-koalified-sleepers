@@ -29,3 +29,19 @@ export const changeObjective=(singleTask)=>{
 	}).then(data => data.json());
 
 }
+
+export const getTaskById=(taskId)=>{
+    return fetch(`http://localhost:8088/tasks/${taskId}`)
+  .then(res => res.json())
+}
+
+export const updateTask=(singleTask)=>{
+    return fetch(`http://localhost:8088/tasks/${singleTask.id}`, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(singleTask)
+	}).then(data => data.json());
+
+}
