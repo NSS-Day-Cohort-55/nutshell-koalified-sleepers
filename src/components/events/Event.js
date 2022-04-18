@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-export const EventCard = ({ singleEvent, handleDeleteEvent, handleChangeEvent }) => {
+export const EventCard = ({ singleEvent, handleDeleteEvent }) => {
 
 const eventActualDate = Date.parse(singleEvent.eventDate)
 const todaysDate = Date.now()
@@ -14,39 +14,38 @@ const todaysDate = Date.now()
                   <br />
                   <p>Date: {singleEvent.eventDate}</p>
                   <p>{singleEvent.location}</p>
-                  <button
-                      type="button"
-                      onClick={console.log("I don't do anything yet")}
-                  >
-                      Show Weather
-                  </button>
 
                   {/* begin work in progress */}
-                  {(eventActualDate < todaysDate  /* is the date before today? */) ? (
-                      <button
-                          type="button"
-                          onClick={() => handleDeleteEvent(singleEvent.id)}
-                      >
-                          Archive
-                      </button>
+                  {/* If the event already happened  */}
+                  {eventActualDate < todaysDate ? (
+                      <>
+                          This event has already happened.<br />
+                          <button
+                              type="button"
+                              onClick={() => handleDeleteEvent(singleEvent.id)}
+                          >
+                              Delete
+                          </button>
+                      </>
                   ) : (
-                      <Link to={`/events/${singleEvent.id}/edit`}>
-                          <button>Edit</button>
-                      </Link>
+                      <>
+                          <button
+                              type="button"
+                              onClick={console.log("I don't do anything yet")}
+                          >
+                              Show Weather
+                          </button>
+                          <Link to={`/events/${singleEvent.id}/edit`}>
+                              <button>Edit</button>
+                          </Link>
+                          <button
+                              type="button"
+                              onClick={() => handleDeleteEvent(singleEvent.id)}
+                          >
+                              Delete
+                          </button>
+                      </>
                   )}
-                  <br />
-
-                  {/* end work in progress (once the section above works, the commented out section below can be deleted) */}
-
-                  {/* <Link to={`/events/${singleEvent.id}/edit`}>
-                      <button>Edit</button>
-                  </Link> */}
-                  <button
-                      type="button"
-                      onClick={() => handleDeleteEvent(singleEvent.id)}
-                  >
-                      Delete
-                  </button>
               </div>
           </div>
       </>
