@@ -30,9 +30,9 @@ export const changeObjective=(singleTask)=>{
 
 }
 
-export const getTaskById=(taskId)=>{
-    return fetch(`http://localhost:8088/tasks/${taskId}`)
-  .then(res => res.json())
+export const getTaskById=(currentUserId)=>{
+    return fetch(`http://localhost:8088/tasks?userId=${currentUserId}`)
+    .then(res => res.json())
 }
 
 export const updateTask=(singleTask)=>{
