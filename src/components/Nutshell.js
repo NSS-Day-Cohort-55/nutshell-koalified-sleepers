@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
+import { FooterCard } from "./nav/Footer"
 import "./Nutshell.css"
 
 export const Nutshell = () => {
@@ -13,7 +14,7 @@ export const Nutshell = () => {
     
     const clearUser = () => {
         sessionStorage.clear();
-        setIsAuthenticated(sessionStorage.getItem("kennel_customer") !== null)
+        setIsAuthenticated(sessionStorage.getItem("nutshell_user") !== null)
       }
     
 return (
@@ -22,5 +23,6 @@ return (
   <ApplicationViews setAuthUser={setAuthUser}
                 isAuthenticated={isAuthenticated}
                 setIsAuthenticated={setIsAuthenticated}/>
+  <FooterCard/>
   </>
 )}

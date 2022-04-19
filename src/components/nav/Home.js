@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { HomeArticleCard } from "./HomeArticleCard"
 import { HomeEventCard } from "./HomeEventCard"
 
+
 export const Home = () => {
     const [articles, setArticles] = useState([])
     const [events, setEvents] = useState([])
@@ -47,6 +48,8 @@ export const Home = () => {
                             key={event.id}
                         singleEvent={event} />))} </section>
         </div>
+        
+
         </>
     )
 }
