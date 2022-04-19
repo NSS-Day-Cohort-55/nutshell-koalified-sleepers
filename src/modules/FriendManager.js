@@ -8,3 +8,13 @@ export const deleteFriend=(friendId)=>{
         method: "DELETE"
       }).then(result => result.json())
 }
+
+export const addFriend=(newFriend)=>{
+    return fetch ('http://localhost:8088/friends',{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newFriend)
+    }).then(response => response.json())
+}
