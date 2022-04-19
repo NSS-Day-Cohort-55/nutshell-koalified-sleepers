@@ -14,6 +14,7 @@ import { FriendForm } from "./friends/AddFriend"
 import { EventList } from "./events/EventList"
 import { EventForm } from "./events/AddEventForm"
 import { EditEventForm } from "./events/EditEventForm"
+import { EditMessageForm } from "./messages/EditMessageForm"
 import { Home } from "./nav/Home"
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
@@ -35,6 +36,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
           <Route path="friends/add" element={<FriendForm/>}/>
 
           <Route path="messages" element={<MessageList />} />
+          <Route path="messages/:messageId/edit" element={<EditMessageForm />} />
 
           <Route exact path="articles" element={<ArticleList />} />
           <Route path="articles/:articleId/edit" element={<EditArticleForm/>}/>

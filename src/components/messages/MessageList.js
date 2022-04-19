@@ -1,10 +1,10 @@
 import { MessageCard } from "./Message";
 import { useState, useEffect } from "react";
-import { getAllMessages, addMessage } from "../../modules/MessageManager";
+import { getAllMessages, addMessage, deleteMessage } from "../../modules/MessageManager";
 import { addFriend } from "../../modules/FriendManager";
 import "./MessageList.css"
 
-
+ 
 
 export const MessageList = ()=> {
     const [messages, setMessages] = useState([])
@@ -21,6 +21,10 @@ export const MessageList = ()=> {
         return getAllMessages().then(messagesFromApi=>{
             setMessages(messagesFromApi)
         })
+    }
+
+    const handleDeleteMessage = (id) => {
+        deleteMessage(id).then(() => getAllMessages().then(setMessages))
     }
 
     const handleControlledInputChange = (event) => {
@@ -81,6 +85,7 @@ export const MessageList = ()=> {
                         key={message.id}
                         singleMessage={message}
                         handleClickSaveFriend={handleClickSaveFriend}
+                        handleDeleteMessage={handleDeleteMessage}
                     />)}
             </div>
         </>
