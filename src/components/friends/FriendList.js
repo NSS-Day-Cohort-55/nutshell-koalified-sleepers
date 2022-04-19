@@ -17,8 +17,10 @@ export const FriendList = () => {
     
 
     const handleDeleteFriend = id => {
-        deleteFriend(id).then(() => getFriendsByCurrentUserId(JSON.parse(sessionStorage.getItem("nutshell_user")).id).then(setFriends))
-    }
+        deleteFriend(id)
+        .then(()=>getFriendsByCurrentUserId(JSON.parse(sessionStorage.getItem("nutshell_user")).id)
+        .then((friendList)=>setFriends(friendList))
+        )}
 
     useEffect(() => {
         getFriends()
@@ -43,7 +45,7 @@ export const FriendList = () => {
               return <FriendCard
                   key={friend.id}
                   singleFriendUser={friend}
-                  handleDeleteTask={handleDeleteFriend} />;
+                  handleDeleteFriend={handleDeleteFriend} />;
           })
 
          }

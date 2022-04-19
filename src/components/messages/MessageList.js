@@ -1,11 +1,13 @@
 import { MessageCard } from "./Message";
 import { useState, useEffect } from "react";
 import { getAllMessages, addMessage } from "../../modules/MessageManager";
+import "./MessageList.css"
+
 
 
 export const MessageList = ()=> {
     const [messages, setMessages] = useState([])
-    
+    const [isActive, setActive] = useState(false)
     
     const [oneMessage, setOneMessage] = useState({
         title: "",
@@ -31,6 +33,8 @@ export const MessageList = ()=> {
         addMessage(oneMessage).then(()=>getAllMessages().then(setMessages))
     }
 
+    
+
     useEffect(() => {
         getMessages();
     }, [])
@@ -39,6 +43,7 @@ export const MessageList = ()=> {
 
     return (
         <>
+     
             <section className="sectionContent">
                 <form className="messageForm">
                     <h2 className="messageForm__title">New Message</h2>
@@ -46,17 +51,20 @@ export const MessageList = ()=> {
                         <div className="form-group">
                             <label htmlFor="title"></label>
                             <input type="text" id="title" onChange={handleControlledInputChange} placeholder="Subject" value={messages.title}></input>
-                        </div>
+                        </div><br/>
                     </fieldset>
                     <fieldset> 
                         <div className="form-group">
                             <label htmlFor="body"></label>
-                            <textarea rows="10" columns="75" id="body" onChange={handleControlledInputChange} placeholder="Body" value={messages.body}></textarea>
+                            <textarea id="body" onChange={handleControlledInputChange} placeholder="Body" value={messages.body}></textarea>
                         </div>
                     </fieldset>
                     <button type="submit" className="btn-primary" onClick={handleClickMessageSave}>Post Message</button>
-                </form>
+                </form>        
             </section>
+
+           
+            
             <div className="container-cards">
                 {messages.map(message =>
                     <MessageCard

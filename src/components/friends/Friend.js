@@ -10,7 +10,7 @@ export const FriendCard = ({singleFriendUser, handleDeleteFriend}) => {
             <button
               type="button"
               onClick={() => handleDeleteFriend(singleFriendUser.id)}
-            >
+              >
               Delete
             </button>
           </div>
