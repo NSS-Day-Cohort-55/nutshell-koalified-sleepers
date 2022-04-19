@@ -22,7 +22,7 @@ export const FriendList = () => {
 
     useEffect(() => {
         getFriends()
-    }, [friends])
+    }, [])
 
     return (
         <>
