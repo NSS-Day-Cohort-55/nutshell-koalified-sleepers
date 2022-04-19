@@ -1,4 +1,4 @@
-import "./Footer.css"
+
 
 export const FooterCard = () => {
     return <>

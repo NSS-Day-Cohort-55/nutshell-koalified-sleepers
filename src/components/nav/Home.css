@@ -19,10 +19,13 @@
     font-family: 'Libre Franklin', sans-serif;
     background-color: #ffdb38;
     padding: 2px 0px 0px 10px;
+    
+    
 }
 
 .card {
     border: none;
     margin: 5px;
+    
 }
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllTasks, deleteTask, changeObjective } from "../../modules/TaskManager";
+import { getTaskById, deleteTask, changeObjective } from "../../modules/TaskManager";
 import { useNavigate } from "react-router-dom";
 import { TaskCard } from "./Task";
 
@@ -11,14 +11,14 @@ export const TaskList=()=>{
     const navigate=useNavigate()
 
     const getTasks=()=>{
-        getAllTasks().then(tasksFromApi=>{
+        getTaskById(JSON.parse(sessionStorage.getItem("nutshell_user")).id).then(tasksFromApi=>{
             setTasks(tasksFromApi)
         })
     }
     
     const handleDeleteTask = id => {
         deleteTask(id)
-        .then(() => getAllTasks().then(setTasks));
+        .then(() => getTasks().then(setTasks));
     };
 
     const handleChangeTask=(id)=>{ 
@@ -26,7 +26,7 @@ export const TaskList=()=>{
         id: id,    
         isDone: true
         }
-        changeObjective(editTask).then(()=>getAllTasks().then(setTasks))
+        changeObjective(editTask).then(()=>getTasks().then(setTasks))
     }
 
     useEffect(()=> {
