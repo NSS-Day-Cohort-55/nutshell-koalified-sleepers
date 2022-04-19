@@ -1,5 +1,5 @@
 export const getAllMessages = () => {
-    return fetch(`http://localhost:8088/messages`)
+    return fetch(`http://localhost:8088/messages?_expand=user`)
     .then(res => res.json())
 }
 
