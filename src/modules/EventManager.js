@@ -1,6 +1,6 @@
 export const getAllEvents = () => {
   return fetch(
-    `http://localhost:8088/events?_sort=timestamp&_order=desc`
+    `http://localhost:8088/events?_sort=eventDate&_order=desc`
   ).then((res) => res.json())
 }
 
