@@ -15,7 +15,7 @@
 .cardContent {
     min-width: 200px;
     min-height: 190px;
-    max-height: 200px;
+    /* max-height: 200px; */
     font-family: 'Libre Franklin', sans-serif;
     background-color: #ffdb38;
     padding: 2px 0px 0px 10px;

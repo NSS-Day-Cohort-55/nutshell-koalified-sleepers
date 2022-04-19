@@ -1,6 +1,7 @@
 import { MessageCard } from "./Message";
 import { useState, useEffect } from "react";
 import { getAllMessages, addMessage } from "../../modules/MessageManager";
+import { addFriend } from "../../modules/FriendManager";
 import "./MessageList.css"
 
 
@@ -27,6 +28,15 @@ export const MessageList = ()=> {
         let selectedVal = event.target.value
         newMessage[event.target.id] = selectedVal
         setOneMessage(newMessage)
+    }
+
+    const handleClickSaveFriend = (friendId) => {
+        const friendObj = {
+            userId: friendId,
+            currentUserId: JSON.parse(sessionStorage.getItem("nutshell_user")).id
+        }
+        addFriend(friendObj).then(getMessages())
+
     }
 
     const handleClickMessageSave = () => {
@@ -70,6 +80,7 @@ export const MessageList = ()=> {
                     <MessageCard
                         key={message.id}
                         singleMessage={message}
+                        handleClickSaveFriend={handleClickSaveFriend}
                     />)}
             </div>
         </>

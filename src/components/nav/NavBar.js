@@ -5,6 +5,10 @@ import "./NavBar.css"
 
 
 export const NavBar = (props) => {
+
+  const Logout =()=>{
+    sessionStorage.removeItem("nutshell_user")
+  }
   return (
     <>
     <picture>
@@ -14,7 +18,7 @@ export const NavBar = (props) => {
       
       <ul className="nav nav-pills nav-fill">
       <li className="nav-item">
-          <Link className="nav-link" to="/">Home</Link>
+          <Link className="nav-link" to="/home">Home</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/articles">Articles</Link>
@@ -30,6 +34,9 @@ export const NavBar = (props) => {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/events">Events</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/login" onClick={()=>{Logout()}}>Logout</Link>
         </li>
       </ul>
     </nav>
