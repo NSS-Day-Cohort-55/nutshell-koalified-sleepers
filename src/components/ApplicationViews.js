@@ -30,7 +30,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
     <>
       <Routes>
         <Route path="/" element={<PrivateOutlet />}>
-          <Route path="/" element={<Home />}/>
+          <Route path="home" element={<Home />}/>
           <Route path="friends" element={<FriendList/>} />
           <Route path="friends/add" element={<FriendForm/>}/>
 
