@@ -1,10 +1,12 @@
 textarea {
  width: 300px;
  height: 150px;
- margin: 5px;
+ margin-top: -25px;
+ 
 }
 
-.sectionContent {
-    margin: 10px;
-}
 
+
+fieldset{
+    border: none;
+}

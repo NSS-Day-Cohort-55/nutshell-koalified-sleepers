@@ -14,6 +14,7 @@ import { FriendForm } from "./friends/AddFriend"
 import { EventList } from "./events/EventList"
 import { EventForm } from "./events/AddEventForm"
 import { EditEventForm } from "./events/EditEventForm"
+import { Home } from "./nav/Home"
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
   const PrivateOutlet = () => {
@@ -29,6 +30,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
     <>
       <Routes>
         <Route path="/" element={<PrivateOutlet />}>
+          <Route path="/" element={<Home />}/>
           <Route path="friends" element={<FriendList/>} />
           <Route path="friends/add" element={<FriendForm/>}/>
 

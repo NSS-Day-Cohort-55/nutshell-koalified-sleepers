@@ -24,7 +24,6 @@ export const MessageCard = ({singleMessage}) => {
                             <div className="overlay">
                                 <div className="content"></div>
                                 <button type="button" className="addFriendButton" onClick={handleClassToggle}>Add Friend</button>
-                                
                                 </div>
                             </div>
                         </div> 
